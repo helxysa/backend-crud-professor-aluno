@@ -42,6 +42,7 @@ async function buscarProfessor(req, res){
 
     } catch(err){
         res.json({error: err});
+
     }
 };
 
