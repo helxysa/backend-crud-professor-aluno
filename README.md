@@ -18,7 +18,7 @@
 `npm run dev` </br>
 O server agora está rodando no `http://localhost:8080`
 
-<\bR>
+
 ## Routes Alunos
 #### GET
 `http://localhost:8080/1/alunos`
