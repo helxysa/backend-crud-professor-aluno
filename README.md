@@ -17,3 +17,14 @@
 ## 3. Coloque o servidor no ar
 `npm run dev` </br>
 O server agora está rodando no `http://localhost:8080`
+
+<\bR>
+## Routes Alunos
+#### GET
+`http://localhost:8080/1/alunos`
+#### PUT
+`http://localhost:8080/1/alunos/2`
+#### POST
+`http://localhost:8080/criarAluno`
+#### DELETE
+`http://localhost:8080/1/2`
