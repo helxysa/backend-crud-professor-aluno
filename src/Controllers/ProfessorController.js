@@ -32,10 +32,21 @@ async function createProfessor(req, res){
 }
 
 
+async function buscarProfessor(req, res){
+    const { id } = req.params;
+
+    try {
+        const professor = await prisma.professor.findUnique({where: {id: parseInt(id, 10)}
+        })
+        res.json(professor)
+
+    } catch(err){
+        res.json({error: err});
+    }
+};
 
 
 
 
 
-
-module.exports = {createProfessor}
+module.exports = {createProfessor, buscarProfessor}
