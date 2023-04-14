@@ -1,6 +1,6 @@
 const { Router } = require("express");
-const { createProfessor, buscarProfessor } = require("./ProfessorController");
-const { createAluno, buscarAluno, updateAluno, DeleteAluno } = require("./AlunoController")
+const { createProfessor, buscarProfessor } = require("./Controllers/ProfessorController");
+const { createAluno, buscarAluno, updateAluno, DeleteAluno } = require("./Controllers/AlunoController")
 
 const router = Router();
 
