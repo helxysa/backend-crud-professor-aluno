@@ -3,10 +3,18 @@ const prisma = new PrismaClient();
 
 async function createAluno(req, res) {
   const { nome, curso, professorId, id } = req.body;
-  const aluno = prisma.aluno.findUnique({where: { id }});
-  if(aluno){
-    return res.json("Esse aluno já foi cadastrado ");
+
+  const alunoExistente = await prisma.aluno.findFirst({
+    where: {
+      nome: nome,
+      curso: curso
+    }
+  });
+
+  if (alunoExistente) {
+    return res.json("Esse aluno já foi criado");
   }
+  
   try {
     const aluno = await prisma.aluno.create({
       data: {
