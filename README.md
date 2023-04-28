@@ -14,7 +14,9 @@
 `git clone <http_do_projeto> `
 ## 2. Gere o banco de dados
 `npx prisma migrate dev --name init `
-## 3. Coloque o servidor no ar
+## 3. Dependencias
+`npm i nodemon `
+## 4. Coloque o servidor no ar
 `npm run dev` </br>
 O server agora está rodando no `http://localhost:8080`
 
