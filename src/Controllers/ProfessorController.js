@@ -3,6 +3,12 @@ const bcrypt = require("bcrypt");
 const prisma = new PrismaClient();
 
 module.exports = {
+    async MostrarTodosProfessor(req, res){
+            const professores = await prisma.professor.findMany()
+            res.json(professores);
+    },
+
+
     async createProfessor(req, res){
         try {
             const { nome, email, senha } = req.body;
