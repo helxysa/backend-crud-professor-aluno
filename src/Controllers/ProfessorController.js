@@ -1,6 +1,15 @@
 const { PrismaClient } = require("@prisma/client");
 const bcrypt = require("bcrypt");
 const prisma = new PrismaClient();
+const express = require('express');
+const app = express();
+const cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
+
+const {createTokens, validateToken}  = require("../JWT")
+
+
 
 module.exports = {
     async MostrarTodosProfessor(req, res){
@@ -36,7 +45,8 @@ module.exports = {
             res.json({error : err});
         }
     },
-    
+
+
     async buscarProfessor(req, res){
         const { id } = req.params;
     

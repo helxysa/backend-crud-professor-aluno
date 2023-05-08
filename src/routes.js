@@ -1,8 +1,10 @@
 const { Router } = require("express");
 const ProfessorController = require("./Controllers/ProfessorController");
 const AlunoController = require("./Controllers/AlunoController")
-
 const router = Router();
+
+
+
 
 //Professor
 router.post("/criarProfessor", ProfessorController.createProfessor);
@@ -11,6 +13,7 @@ router.put("/professor/:id", ProfessorController.updateProfessor);
 router.delete("/professor/:id", ProfessorController.deleteProfessor);
 router.get("/professor/:id/listaDeAlunos", ProfessorController.mostrarAlunos);
 router.get("/professores", ProfessorController.MostrarTodosProfessor);
+
 
 //Aluno
 router.post("/criarAluno",  AlunoController.createAluno);
