@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 module.exports = {
   async createAluno(req, res) {
-    const { nome, curso, professorId, id } = req.body;
+    const { nome, curso, professorId } = req.body;
   
     const alunoExistente = await prisma.aluno.findFirst({
       where: {
@@ -16,15 +16,30 @@ module.exports = {
     if (alunoExistente) {
       return res.json("Esse aluno já foi criado");
     }
-    
+  
     try {
+      const professor = await prisma.professor.findUnique({
+        where: {
+          id: professorId
+        }
+      });
+  
+      if (!professor) {
+        return res.status(400).json({ error: "Professor não encontrado" });
+      }
+  
       const aluno = await prisma.aluno.create({
         data: {
           nome,
           curso,
-          professorId,
-        },
+          professor: {
+            connect: {
+              id: professorId
+            }
+          }
+        }
       });
+  
       res.json(aluno);
     } catch (err) {
       console.error(err);

@@ -16,7 +16,7 @@ router.get("/professores", ProfessorController.MostrarTodosProfessor);
 
 
 //Aluno
-router.post("/criarAluno",  AlunoController.createAluno);
+router.post("/:professorId/criarAluno",  AlunoController.createAluno);
 router.get("/:professorId/alunos", AlunoController.buscarAluno);
 router.get("/buscarTodosAlunos", AlunoController.buscarTodosAlunos)
 router.put("/:professorId/alunos/:alunoId", AlunoController.updateAluno);
