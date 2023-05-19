@@ -74,7 +74,7 @@ module.exports = {
   },
   
   async updateAluno(req, res){
-    const {professorId, alunoId} = req.params;
+    const {alunoId} = req.params;
     const {nome, curso} =  req.body;
   
     try{
@@ -92,7 +92,7 @@ module.exports = {
   },
   
   async deleteAluno(req, res){
-    const { professorId, alunoId} = req.params;
+    const {alunoId} = req.params;
   
     try{
       const deletedAluno = await prisma.aluno.delete({

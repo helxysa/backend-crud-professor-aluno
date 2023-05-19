@@ -21,23 +21,24 @@ app.post("/loginProfessor", async (req, res) => {
     const {email, senha} = req.body;
     const usuario = await prisma.professor.findUnique({where: {email}});
     if(!usuario) {
-      res.json({error: "Esse usuário não existe"})
+      res.status(404).json({error: "Usuario nao existe"})
     }
     const pSenha = usuario.senha;
     bcrypt.compare(senha, pSenha).then((match) => {
       if(!match) {
-        res
-        .status(400)
-        .json({error: "Senha e usuário incorretos"});
+        res.status(404).json({error: "Senha ou Email errados"})
       }  else {
         
         const acessToken = createTokens(usuario)
         res.cookie("acess-token", acessToken, {
-            // httpOnly: false,
-            maxAge: 300,
-      });
+          httpOnly: false
         
-        res.json("Você está logado")
+    });
+        res.json({
+          message: "Você está logado",
+          id: usuario.id, 
+          acessToken: acessToken
+        })
       }
     })
   
@@ -59,4 +60,4 @@ app.post("/loginProfessor", async (req, res) => {
 
 app.listen(8080, () => {
     console.log("Server running on port 8080...")
-});
+}); 

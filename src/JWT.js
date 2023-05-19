@@ -2,18 +2,22 @@ const { sign, verify } = require("jsonwebtoken");
 
 //Criar o TOKEN
 const createTokens = (professor) => {
+  const {email, id} =  professor;
   const accessToken = sign({
-    email: professor.email, id: professor.id
+    email, 
+    id
   },
   "jwtsecret",
+  { expiresIn: "1h"}
   );
   return accessToken;
 }
 
 const validadeToken = (req, res, next) => {
-  const acessToken = req.cookies["acess-token"]
+  const acessToken = req.cookies("access-token");
   if(!acessToken) {
-    return res.status(400).json({error: "Usuario não autenticado"})}
+    res.status(404).json({error: "Nao autenticado"})
+  }
   
   try {
     const validToken = verify(acessToken, "jwtsecret");
@@ -22,7 +26,7 @@ const validadeToken = (req, res, next) => {
       return next();
     }
   } catch(err){
-    return res.stauts(400).json({error: err});
+    res.status(404).json({error: "Algo deu errado"})
   }
 }
 

@@ -20,6 +20,6 @@ router.post("/:professorId/criarAluno",  AlunoController.createAluno);
 router.get("/:professorId/alunos", AlunoController.buscarAluno);
 router.get("/buscarTodosAlunos", AlunoController.buscarTodosAlunos)
 router.put("/:professorId/alunos/:alunoId", AlunoController.updateAluno);
-router.delete("/:professorId/:alunoId", AlunoController.deleteAluno)
+router.delete("/:professorId/alunos/:alunoId", AlunoController.deleteAluno)
 
 module.exports = { router }
